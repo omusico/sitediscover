@@ -8,7 +8,7 @@ public class Question {
     public String anwser0, anwser1, anwser2, anwser3;
     public String result;
     public double lng, lat;
-    public double zoomLevel = 17;
+    public double zoomLevel = 15;
 
     public boolean finish;
 }

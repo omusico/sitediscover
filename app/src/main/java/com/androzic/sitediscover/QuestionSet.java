@@ -54,23 +54,23 @@ public class QuestionSet {
         } catch (Throwable e) {
             Question q;
             q = new Question();
-            q.question = "Ban dang o dau";
-            q.anwser0 = "HN";
-            q.anwser1 = "SG";
-            q.anwser2 = "DN";
-            q.anwser3 = "CT";
-            q.result = "HN";
+            q.question = "Đây là đâu?";
+            q.anwser0 = "UBND Thành Phố";
+            q.anwser1 = "Trại giam Chí Hòa";
+            q.anwser2 = "Dinh Độc Lập";
+            q.anwser3 = "Nhà thờ Tân Định";
+            q.result = "Trại giam Chí Hòa";
             q.lat = 10.7771892;
             q.lng = 106.6687563;
             questions.add(q);
 
             q = new Question();
-            q.question = "Ban dang o dau (2)";
-            q.anwser0 = "HK";
-            q.anwser1 = "NY";
-            q.anwser2 = "PR";
-            q.anwser3 = "BK";
-            q.result = "BK";
+            q.question = "Đây là đâu?";
+            q.anwser0 = "Việt Nam quốc tự";
+            q.anwser1 = "Chùa Vĩnh Nghiêm";
+            q.anwser2 = "Chùa Xá Lợi";
+            q.anwser3 = "Chùa Minh Đăng Quang";
+            q.result = "Chùa Minh Đăng Quang";
             q.lat = 10.8020709;
             q.lng = 106.7518541;
             questions.add(q);
