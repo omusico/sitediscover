@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_sort_white_24dp"
+        android:title="@string/menu_sort"
+        app:showAsAction="always">
+        <menu>
+            <group android:checkableBehavior="single" >
+                <item
+                    android:id="@+id/action_sort_alpha"
+                    android:title="@string/action_bar_sort_alpha"/>
+                <item
+                    android:id="@+id/action_sort_size"
+                    android:title="@string/action_bar_sort_distance"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_load_waypoints"
+        android:icon="@drawable/ic_folder_open_white_24dp"
+        android:title="@string/menu_load"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_project_waypoint"
+        android:icon="@drawable/ic_arrow_forward_white_24dp"
+        android:title="@string/menu_project"/>
+
+    <group
+        android:id="@+id/group_sets"
+        android:checkableBehavior="all"
+        android:visible="false" >
+    </group>
+
+    <item
+        android:id="@+id/action_new_waypoint_set"
+        android:icon="@drawable/ic_note_add_white_24dp"
+        android:orderInCategory="1"
+        android:title="@string/menu_newwaypointset"/>
+
+</menu>

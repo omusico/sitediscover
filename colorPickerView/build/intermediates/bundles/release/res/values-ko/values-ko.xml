@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/E:/sitediscover/colorPickerView/src/main/res/values-ko/Korean_colorpicker_translatable_strings.xml -->
+    <eat-comment/>
+    <string name="color_dialog_title">색깔 선택</string>
+</resources>

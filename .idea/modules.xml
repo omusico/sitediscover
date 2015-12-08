@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android-support-v4-preferencefragment-master/android-support-v4-preferencefragment-master.iml" filepath="$PROJECT_DIR$/android-support-v4-preferencefragment-master/android-support-v4-preferencefragment-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androzic-library/androzic-library.iml" filepath="$PROJECT_DIR$/androzic-library/androzic-library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/colorPickerView/colorPickerView.iml" filepath="$PROJECT_DIR$/colorPickerView/colorPickerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dragsortlistview/dragsortlistview.iml" filepath="$PROJECT_DIR$/dragsortlistview/dragsortlistview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/geo-coordinate-conversion/geo-coordinate-conversion.iml" filepath="$PROJECT_DIR$/geo-coordinate-conversion/geo-coordinate-conversion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sitediscover.iml" filepath="$PROJECT_DIR$/sitediscover.iml" />
+    </modules>
+  </component>
+</project>

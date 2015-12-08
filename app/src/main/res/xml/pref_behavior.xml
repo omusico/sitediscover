@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/pref_map_title" >
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/def_usemapindex"
+        android:key="@string/pref_usemapindex"
+        android:title="@string/pref_usemapindex_title" />
+
+    <com.androzic.ui.SeekbarPreference
+        android:key="@string/pref_maprenderinterval"
+        android:text="@string/abbr_milliseconds"
+        android:title="@string/pref_maprenderinterval_title"
+        android:defaultValue="@integer/def_maprenderinterval"
+        app:max="50"
+        app:min="2"
+        app:multiplier="100" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/def_mapbest"
+        android:key="@string/pref_mapbest"
+        android:title="@string/pref_mapbest_title" />
+
+    <com.androzic.ui.SeekbarPreference
+        android:dependency="@string/pref_mapbest"
+        android:key="@string/pref_mapbestinterval"
+        android:title="@string/pref_mapbestinterval_title"
+        android:defaultValue="@integer/def_mapbestinterval"
+        app:text="@plurals/secondsValue"
+        app:max="30"
+        app:min="3" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:dialogTitle="@string/pref_mapforcezoom_title"
+        android:entries="@array/forcezoom_names"
+        android:entryValues="@array/forcezoom_values"
+        android:key="@string/pref_mapforcezoom"
+        android:title="@string/pref_mapforcezoom_title" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/def_mapadjacent"
+        android:key="@string/pref_mapadjacent"
+        android:title="@string/pref_mapadjacent_title" />
+    <CheckBoxPreference
+        android:defaultValue="@bool/def_maplistscale"
+        android:key="@string/pref_maplistscale"
+        android:title="@string/pref_maplistscale_title" />
+    <CheckBoxPreference
+        android:defaultValue="@bool/def_mapfollowonloc"
+        android:key="@string/pref_mapfollowonloc"
+        android:title="@string/pref_mapfollowonloc_title" />
+    <CheckBoxPreference
+        android:defaultValue="@bool/def_unfollowontap"
+        android:key="@string/pref_unfollowontap"
+        android:title="@string/pref_unfollowontap_title" />
+    <PreferenceCategory android:title="@string/pref_vectormaps_title" >
+        <ListPreference
+            android:dialogTitle="@string/pref_vectormap_theme_title"
+            android:key="@string/pref_vectormap_theme"
+            android:title="@string/pref_vectormap_theme_title" />
+        <org.droidparts.widget.MultiSelectListPreference
+            android:defaultValue="---"
+            android:dialogTitle="@string/pref_vectormap_poi_title"
+            android:key="@string/pref_vectormap_poi"
+            android:title="@string/pref_vectormap_poi_title" />
+        <ListPreference
+            android:defaultValue="1.0"
+            android:dialogTitle="@string/pref_vectormap_textscale_title"
+            android:entries="@array/scale_names"
+            android:entryValues="@array/scale_values"
+            android:key="@string/pref_vectormap_textscale"
+            android:title="@string/pref_vectormap_textscale_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_onlinemaps_title" >
+        <org.droidparts.widget.MultiSelectListPreference
+            android:defaultValue="osm"
+            android:dialogTitle="@string/pref_onlinemap_title"
+            android:key="@string/pref_onlinemap"
+            android:title="@string/pref_onlinemap_title" />
+
+        <com.androzic.ui.SeekbarPreference
+            android:key="@string/pref_onlinemapscale"
+            android:title="@string/pref_onlinemapscale_title"
+            android:defaultValue="@integer/def_onlinemapscale"
+            app:max="19"
+            app:min="1" />
+        <com.androzic.ui.SeekbarPreference
+            android:key="@string/pref_onlinemapprescalefactor"
+            android:title="@string/pref_onlinemapprescalefactor_title"
+            android:defaultValue="@integer/def_onlinemapprescalefactor"
+            app:max="4"
+            app:min="1" />
+        <com.androzic.ui.SeekbarPreference
+            android:key="@string/pref_onlinemapexpiration"
+            android:title="@string/pref_onlinemapexpiration_title"
+            android:defaultValue="@integer/def_onlinemapexpiration"
+            app:text="@plurals/weeksValue"
+            app:zeroText="@string/never"
+            app:max="52"
+            app:min="0" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_grid_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_grid_mapshow"
+            android:title="@string/pref_grid_mapshow_title" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_grid_usershow"
+            android:title="@string/pref_grid_usershow_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/def_grid_userscale"
+            android:dependency="@string/pref_grid_usershow"
+            android:inputType="number"
+            android:key="@string/pref_grid_userscale"
+            android:maxLength="5"
+            android:numeric="integer"
+            android:singleLine="true"
+            android:title="@string/pref_grid_userscale_title" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dependency="@string/pref_grid_usershow"
+            android:dialogTitle="@string/pref_grid_userunit_title"
+            android:entries="@array/distance_short"
+            android:entryValues="@array/distance_values"
+            android:key="@string/pref_grid_userunit"
+            android:title="@string/pref_grid_userunit_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/def_grid_usermpp"
+            android:dependency="@string/pref_grid_usershow"
+            android:inputType="number"
+            android:key="@string/pref_grid_usermpp"
+            android:maxLength="4"
+            android:numeric="integer"
+            android:singleLine="true"
+            android:title="@string/pref_grid_usermpp_title" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dependency="@string/pref_grid_usershow"
+            android:dialogTitle="@string/pref_grid_preference_title"
+            android:entries="@array/grid_names"
+            android:entryValues="@array/grid_values"
+            android:key="@string/pref_grid_preference"
+            android:title="@string/pref_grid_preference_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

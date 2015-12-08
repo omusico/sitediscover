@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.Application" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/theme_primary_color</item>
+        <item name="colorPrimaryDark">@color/theme_primary_darker_color</item>
+        <item name="colorAccent">@color/theme_accent_color</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@color/theme_primary_darker_color</item>
+        <item name="android:colorBackground">@color/theme_primary_darker_color</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="activatedBackgroundIndicator">@null</item>
+<!-- 		<item name="popupMenuStyle">@style/PopupMenu</item>  -->
+        <!-- The rest of your attributes -->
+        <item name="horizontalPadding">6dip</item>
+    </style>
+
+    <style name="ThemeOverlay.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:background">@color/theme_primary_color</item>
+    </style>
+
+    <style name="PopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
+		<item name="android:popupBackground">@color/theme_primary_color</item>
+    </style>
+
+	<style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <!-- Left to remember how to use target API check -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:displayOptions" tools:targetApi="11">showHome|useLogo</item>
+        <!-- Support library compatibility -->
+        <item name="displayOptions">showHome|useLogo</item>
+    </style>
+
+    <style name="Dialog" parent="@android:style/Theme.Dialog" />
+
+    <style name="SuitableMapsList">
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+	</style>
+	
+	<style name="GeneralDialog">
+	    <item name="android:padding">16dp</item>
+	</style>
+	
+	<style name="WaypointInfoDialog">
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+	</style>
+
+	<style name="Scroller">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/slider_back</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+</resources>

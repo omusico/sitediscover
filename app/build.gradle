@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.androzic.sitediscover"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 2
+        versionName "1.1"
+        multiDexEnabled true
+    }
+    signingConfigs {
+        release {
+//            storeFile file(RELEASE_STORE_FILE)
+//            storePassword RELEASE_STORE_PASSWORD
+//            keyAlias RELEASE_KEY_ALIAS
+//            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    android.productFlavors {
+        create("generic") {
+            versionName = "2.3"
+        }
+//        create("SeaVenti") {
+//            versionName = "2.3-SeaVenti"
+//        }
+    }
+//    ndk {
+//        moduleName = "ozfdecoder"
+//        ldLibs = ["z", "log"]
+//        /*
+//         * Other ndk flags configurable here are
+//         * cppFlags += "-fno-rtti"
+//         * cppFlags += "-fno-exceptions"
+//         * ldLibs    = ["android", "log"]
+//         * stl       = "system"
+//         */
+//    }
+}
+
+dependencies {
+    compile project(':androzic-library')
+    compile project(':colorPickerView')
+    compile project(':dragsortlistview')
+    compile project(':android-support-v4-preferencefragment-master')
+//    compile project(':jstk')
+
+    compile ('org.mapsforge:mapsforge-core:' + MAPFORGR_VER) {
+        exclude module: "compatibility-v4"
+    }
+    compile ('org.mapsforge:mapsforge-map-android:' + MAPFORGR_VER){
+        exclude module: "compatibility-v4"
+    }
+    compile ('org.mapsforge:mapsforge-map-reader:' + MAPFORGR_VER){
+        exclude module: "compatibility-v4"
+    }
+//    compile ('org.mapsforge:mapsforge-map-android-extras:' + MAPFORGR_VER){
+//        exclude module: "compatibility-v4"
+//    }
+    compile ('org.mapsforge:mapsforge-map-writer:' + MAPFORGR_VER){
+        exclude module: "compatibility-v4"
+    }
+
+    compile 'com.android.support:appcompat-v7:' + SUPPORT_VER
+    compile 'com.android.support:design:' + SUPPORT_VER
+
+    compile ('com.daimajia.swipelayout:library:1.2.0') {
+        exclude module: "compatibility-v4"
+    }
+    compile ('com.esotericsoftware:kryo:3.0.1') {
+        exclude module: "compatibility-v4"
+    }
+    compile 'com.android.support:multidex:1.0.0'
+}

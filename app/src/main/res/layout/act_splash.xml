@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <include layout="@layout/inc_logo" />
+
+    <TextView
+        android:id="@+id/dedicated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dip"
+        android:paddingBottom="10dip"
+        android:text="@string/msg_dedicated"
+        android:textSize="9sp" />
+
+    <TextView
+        android:id="@+id/paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/msg_paid"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:paddingTop="40dip" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/gotit"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/gotit"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/quit"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/quit"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

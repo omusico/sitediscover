@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="horizontalPadding" format="dimension" /> 
+    <declare-styleable name="SeekbarPreference">
+        <attr name="zeroText" format="string" />
+        <attr name="text" format="reference" />
+        <attr name="min" format="integer" />
+        <attr name="max" format="integer" />
+        <attr name="multiplier" format="float" />
+        <attr name="format" format="string" />
+    </declare-styleable>
+    <declare-styleable name="FolderPickerPreference">
+        <attr name="defaultFolder" format="string" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Dialog" parent="@android:style/Theme.Holo.Dialog" />
+
+    <style name="ButtonBar" parent="@android:style/Holo.ButtonBar"></style>
+
+    <style name="Button" parent="@android:style/Widget.Holo.Button.Borderless"></style>
+
+    <style name="ButtonBarContainer">
+        <item name="android:paddingTop">6dip</item>
+        <item name="android:showDividers">beginning</item>
+        <item name="android:divider">?android:attr/dividerHorizontal</item>
+    </style>
+
+</resources>

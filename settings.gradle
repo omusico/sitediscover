@@ -1,0 +1,3 @@
+include ':androzic-library', ':geo-coordinate-conversion', ':android-support-v4-preferencefragment-master', ':app'
+include ':colorPickerView'
+include ':dragsortlistview'
