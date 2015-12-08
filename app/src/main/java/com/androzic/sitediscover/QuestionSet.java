@@ -71,8 +71,8 @@ public class QuestionSet {
             q.anwser2 = "PR";
             q.anwser3 = "BK";
             q.result = "BK";
-            q.lat = 11.7771892;
-            q.lng = 106.6687563;
+            q.lat = 10.8020709;
+            q.lng = 106.7518541;
             questions.add(q);
             e.printStackTrace();
         }
