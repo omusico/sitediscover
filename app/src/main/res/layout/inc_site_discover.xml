@@ -1,63 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<FrameLayout
     android:id="@+id/site_discover"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_above="@+id/bottombar"
+    android:layout_alignParentBottom="true"
     android:layout_alignParentRight="true"
-    android:background="#88000000"
-    android:orientation="vertical"
-    android:padding="3dip"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
-        android:id="@+id/sd_question"
-        tools:text="where is this?"
-        style="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+    android:background="#88000000">
 
     <LinearLayout
+        android:id="@+id/frame1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="8dip">
 
-        <RadioButton
-            android:id="@+id/sd_ans0"
-            tools:text="HCMc"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/sd_question"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            tools:text="where is this?"/>
 
-        <RadioButton
-            android:id="@+id/sd_ans1"
-            tools:text="Hanoi"
-            android:layout_width="0dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/sd_ans0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="HCMc"/>
+
+            <RadioButton
+                android:id="@+id/sd_ans1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Hanoi"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/sd_ans2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Singapore"/>
+
+            <RadioButton
+                android:id="@+id/sd_ans3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Paris"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:id="@+id/frame0"
+        android:padding="16dp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/sd_ans2"
-            android:layout_width="0dp"
-            tools:text="Singapore"
+        <TextView
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:text="@string/app_name"/>
 
-        <RadioButton
-            android:id="@+id/sd_ans3"
-            tools:text="Paris"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_gravity="right"
+            android:text="Bắt đầu"/>
+
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

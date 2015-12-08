@@ -103,8 +103,8 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 		trackBar.setProgress(p);
 		trackBar.setKeyProgressIncrement(1);
 		onProgressChanged(trackBar, p, false);
-		findViewById(R.id.edittrack).setVisibility(View.VISIBLE);
-		findViewById(R.id.trackdetails).setVisibility(View.VISIBLE);
+//		findViewById(R.id.edittrack).setVisibility(View.VISIBLE);
+//		findViewById(R.id.trackdetails).setVisibility(View.VISIBLE);
 		//updateGPSStatus();
 		if (showDistance > 0)
 			application.overlayManager.distanceOverlay.setEnabled(false);
@@ -201,8 +201,8 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 				application.editingTrack.editing = false;
 				application.editingTrack.editingPos = -1;
 				application.editingTrack = null;
-				findViewById(R.id.edittrack).setVisibility(View.GONE);
-				findViewById(R.id.trackdetails).setVisibility(View.GONE);
+//				findViewById(R.id.edittrack).setVisibility(View.GONE);
+//				findViewById(R.id.trackdetails).setVisibility(View.GONE);
 				//updateGPSStatus();
 				if (showDistance == 2)
 				{

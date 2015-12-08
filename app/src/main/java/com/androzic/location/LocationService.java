@@ -935,11 +935,11 @@ public class LocationService extends BaseLocationService implements LocationList
 		}
 		catch (NumberFormatException e)
 		{
-			Log.e(TAG, "NFE", e);
+//			Log.e(TAG, "NFE", e);
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{
-			Log.e(TAG, "AIOOBE", e);
+//			Log.e(TAG, "AIOOBE", e);
 		}
 	}
 

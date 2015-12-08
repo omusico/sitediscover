@@ -62,6 +62,9 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,7 +101,7 @@ import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MapFragment extends Fragment implements MapHolder, OnSharedPreferenceChangeListener, View.OnClickListener, View.OnTouchListener, MenuBuilder.Callback, MenuPresenter.Callback{
+public class MapFragment extends Fragment implements MapHolder, OnSharedPreferenceChangeListener, View.OnClickListener, View.OnTouchListener, MenuBuilder.Callback, MenuPresenter.Callback {
     public static final String TAG = "MapFragment";
     private static final int REQ_CODE_SPEECH_INPUT = 1001;
 
@@ -156,7 +159,7 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
 
     private TextView waitBar;
 
-    private View mapInfo;
+    //    private View mapInfo;
     private View satInfo;
     private View navInfo;
     private View mapButtons;
@@ -179,6 +182,14 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
     private int zoom100Y = 0;
 
     private boolean animationSet;
+    private QuestionSet mQuestions;
+    private View mFrame0;
+    private View mFrame1;
+    private TextView mTitleview;
+    private TextView mQuestionView;
+    private RadioButton mOpt0View, mOpt1View, mOpt2View, mOpt3View;
+    private Button mButton;
+    private Question mCurrentQuestion;
 
     public MapFragment() {
         application = Androzic.getApplication();
@@ -232,7 +243,7 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
         turnValue = (TextView) view.findViewById(R.id.turn);
         turnUnit = (TextView) view.findViewById(R.id.turnunit);
         // trackBar = (SeekBar) findViewById(R.id.trackbar);
-        mapInfo = view.findViewById(R.id.mapinfo);
+//        mapInfo = view.findViewById(R.id.mapinfo);
         satInfo = view.findViewById(R.id.satinfo);
         navInfo = view.findViewById(R.id.navinfo);
         mapButtons = view.findViewById(R.id.mapbuttons);
@@ -266,8 +277,129 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
         return view;
     }
 
-    private void onSiteDiscoverCreated(View view) {
 
+    private void onSiteDiscoverCreated(View view) {
+        mQuestions = new QuestionSet(getActivity());
+        mQuestions.reset();
+
+        mFrame0 = view.findViewById(R.id.frame0);
+        mFrame1 = view.findViewById(R.id.frame1);
+        mTitleview = (TextView) view.findViewById(R.id.title);
+        mButton = (Button) view.findViewById(R.id.start);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mQuestions.state = QuestionSet.STARTED;
+                updateSiteDiscover();
+            }
+        });
+
+        mQuestionView = (TextView) view.findViewById(R.id.sd_question);
+        mOpt0View = (RadioButton) view.findViewById(R.id.sd_ans0);
+        mOpt1View = (RadioButton) view.findViewById(R.id.sd_ans1);
+        mOpt2View = (RadioButton) view.findViewById(R.id.sd_ans2);
+        mOpt3View = (RadioButton) view.findViewById(R.id.sd_ans3);
+
+        mOpt0View.setOnCheckedChangeListener(onCheckListener);
+        mOpt1View.setOnCheckedChangeListener(onCheckListener);
+        mOpt2View.setOnCheckedChangeListener(onCheckListener);
+        mOpt3View.setOnCheckedChangeListener(onCheckListener);
+
+        updateSiteDiscover();
+    }
+
+    CompoundButton.OnCheckedChangeListener onCheckListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            if (isChecked) {
+                String selected = "" + buttonView.getText();
+                if (selected.equals(mCurrentQuestion.result)) {
+                    mQuestions.increaseScore();
+                }
+
+                if (!mQuestions.hasNext()) {
+                    mQuestions.state = QuestionSet.FINISHED;
+                }
+
+                updateSiteDiscover();
+            }
+
+        }
+    };
+
+    private void updateSiteDiscover() {
+        if (mQuestions.state == QuestionSet.IDLE) {
+            mFrame0.setVisibility(View.VISIBLE);
+            mFrame1.setVisibility(View.INVISIBLE);
+            mTitleview.setText(R.string.app_name);
+            mButton.setText("Bắt đầu");
+        } else if (mQuestions.state == QuestionSet.STARTED) {
+            mFrame0.setVisibility(View.GONE);
+            mFrame1.setVisibility(View.VISIBLE);
+
+            try {
+                mCurrentQuestion = mQuestions.next();
+                mQuestionView.setText(mCurrentQuestion.question);
+                mOpt0View.setText(mCurrentQuestion.anwser0);
+                mOpt1View.setText(mCurrentQuestion.anwser1);
+                mOpt2View.setText(mCurrentQuestion.anwser2);
+                mOpt3View.setText(mCurrentQuestion.anwser3);
+                mOpt0View.setChecked(false);
+                mOpt1View.setChecked(false);
+                mOpt2View.setChecked(false);
+                mOpt3View.setChecked(false);
+                zoomToQuestion(mCurrentQuestion);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+
+        } else {
+            mFrame0.setVisibility(View.VISIBLE);
+            mFrame1.setVisibility(View.INVISIBLE);
+            mTitleview.setText(String.format("Bạn được %d điểm", mQuestions.getScore()));
+            mButton.setText("Thử lại");
+        }
+
+    }
+
+    private void zoomToQuestion(Question q) {
+        boolean mapChanged = application.setMapCenter(q.lat, q.lng, true, true, false);
+        if (mapChanged)
+            map.updateMapInfo();
+        map.updateMapCenter();
+        following = false;
+        map.setFollowing(false);
+
+        while (application.getNextZoom() < q.zoomLevel + 1) {
+            wait(new Waitable() {
+                @Override
+                public void waitFor() {
+                    application.zoomIn();
+                }
+            });
+        }
+
+//        if (cmd.equals("đại học khoa học tự nhiên"))
+//        {
+//            move = true;
+//            deltaY = -vitri[0] + 10.762653;
+//            deltaX = -vitri[1] + 106.682074;
+//        }
+//
+//        if (move) {
+//        }
+//        if (cmd.equals("to")) //zoom in?
+//        {
+//            if (application.getNextZoom() == 0.0)
+//                return;
+//            wait(new Waitable() {
+//                @Override
+//                public void waitFor() {
+//                    application.zoomIn();
+//                }
+//            });
+//        }
     }
 
     @Override
@@ -900,18 +1032,18 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
         boolean changed = false;
 
         if ((now < map.lastDragTime + mapInfoHideDelay)) {
-            if (mapInfo.getVisibility() != View.VISIBLE) {
-                mapInfo.setVisibility(View.VISIBLE);
-                if (mapButtonsVisible)
-                    mapButtons.setVisibility(View.VISIBLE);
-                changed = true;
-            }
+//            if (mapInfo.getVisibility() != View.VISIBLE) {
+//                mapInfo.setVisibility(View.VISIBLE);
+//                if (mapButtonsVisible)
+//                    mapButtons.setVisibility(View.VISIBLE);
+//                changed = true;
+//            }
         } else {
-            if (mapInfo.getVisibility() != View.GONE) {
-                mapInfo.setVisibility(View.GONE);
-                mapButtons.setVisibility(View.GONE);
-                changed = true;
-            }
+//            if (mapInfo.getVisibility() != View.GONE) {
+//                mapInfo.setVisibility(View.GONE);
+//                mapButtons.setVisibility(View.GONE);
+//                changed = true;
+//            }
         }
         if ((now < map.lastDragTime + satInfoHideDelay)) {
             if (satInfo.getVisibility() != View.VISIBLE) {
@@ -942,7 +1074,7 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
 
     private void updateEditStatus() {
         if (application.editingRoute != null) {
-            getView().findViewById(R.id.editroute).setVisibility(View.VISIBLE);
+//            getView().findViewById(R.id.editroute).setVisibility(View.VISIBLE);
             //if (showDistance > 0)
             //	application.overlayManager.distanceOverlay.setEnabled(false);
             setFollowing(false);
@@ -952,7 +1084,7 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
     private void updateGPSStatus() {
         int v = map.isMoving() && application.editingRoute == null && application.editingTrack == null ? View.VISIBLE : View.GONE;
         View view = getView().findViewById(R.id.movinginfo);
-        if (view.getVisibility() != v) {
+        if (view != null && view.getVisibility() != v) {
             view.setVisibility(v);
             updateMapViewArea();
         }
@@ -1200,7 +1332,7 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
                 application.dispatchRoutePropertiesChanged(application.editingRoute);
                 application.editingRoute = null;
                 application.routeEditingWaypoints = null;
-                getView().findViewById(R.id.editroute).setVisibility(View.GONE);
+//                getView().findViewById(R.id.editroute).setVisibility(View.GONE);
                 updateGPSStatus();
                 if (showDistance == 2) {
                     application.overlayManager.distanceOverlay.setEnabled(true);
@@ -1320,7 +1452,6 @@ public class MapFragment extends Fragment implements MapHolder, OnSharedPreferen
             Toast.makeText(application, getString(R.string.msg_nolastknownlocation), Toast.LENGTH_LONG).show();
         }
     }
-
 
 
     @Override
